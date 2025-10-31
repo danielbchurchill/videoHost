@@ -1,24 +1,26 @@
 # Video Host
 
-A minimal video hosting site that displays videos in fullscreen with autoplay functionality. Perfect for QR code sharing and instant video playback.
+A minimal video hosting site that displays YouTube videos in fullscreen with autoplay functionality. Perfect for QR code sharing and instant video playback.
 
 ## Features
 
-- 🎥 **Fullscreen Video Player**: Automatically fills the entire viewport
-- ▶️ **Autoplay**: Video starts playing immediately on load  
+- 🎥 **Fullscreen YouTube Player**: Automatically fills the entire viewport
+- ▶️ **Autoplay**: Video starts playing immediately on load (muted for browser compliance)
 - 📱 **Mobile Optimized**: Works perfectly on all devices
-- 🚀 **Ultra Minimal**: Only 13 lines of HTML/CSS code
-- ⚡ **Fast Loading**: No dependencies, pure HTML
+- 🚀 **Ultra Minimal**: Only 11 lines of HTML/CSS code
+- ⚡ **Fast Loading**: Uses YouTube's CDN for optimal performance
+- 🌐 **No File Size Limits**: Host any length video via YouTube
 
 ## Setup
 
-1. **Add your video file** to `src/videos/` directory
-2. **Update the video path** in `index.html` to match your video file name
-3. **Start a local server**:
+1. **Upload your video to YouTube**
+2. **Get the video ID** from the YouTube URL (e.g., `36jV4vA3QwQ` from `https://www.youtube.com/watch?v=36jV4vA3QwQ`)
+3. **Update the video ID** in `index.html` in the iframe src
+4. **Start a local server**:
    ```bash
    python3 -m http.server 8080
    ```
-4. **Access your video** at `http://localhost:8080`
+5. **Access your video** at `http://localhost:8080`
 
 ## For QR Code Sharing
 
@@ -55,22 +57,24 @@ videoHost/
         └── your-video.mp4  # Your video file (not in git)
 ```
 
-## Supported Video Formats
+## Supported Video Sources
 
-- MP4 (recommended)
-- WebM
-- MOV
-- OGV
+- ✅ **YouTube** (current implementation)
+- ✅ **Vimeo** (change embed URL)
+- ✅ **Any video hosting service with embed support**
 
-## Note on Large Files
+## YouTube Embed Parameters
 
-Video files are excluded from git commits due to GitHub's file size limits. For production deployment, consider using:
+The current setup includes these YouTube parameters for optimal experience:
+- `autoplay=1` - Starts playing automatically
+- `mute=1` - Required for autoplay in most browsers
+- `controls=1` - Shows video controls
+- `rel=0` - Reduces related video suggestions
+- `modestbranding=1` - Minimal YouTube branding
 
-- YouTube (embed)
-- Vimeo (embed) 
-- AWS S3
-- Google Cloud Storage
-- Any CDN service
+## Note on Autoplay
+
+Due to browser policies, videos with sound cannot autoplay. The video starts muted and users can unmute manually. This ensures compatibility across all browsers and devices.
 
 ## Browser Support
 

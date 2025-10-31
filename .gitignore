@@ -1,0 +1,11 @@
+# Ignore large video files
+src/videos/*.mp4
+src/videos/*.mov
+src/videos/*.avi
+src/videos/*.webm
+
+# macOS
+.DS_Store
+
+# Logs
+*.log
